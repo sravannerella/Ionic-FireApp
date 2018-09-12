@@ -1,0 +1,23 @@
+<ion-content>
+    <div class="d-flex align-items-center justify-content-center h-100vh">
+        <div>
+            <h1 class="text-center text-primary">Ionic</h1>
+            <h3 class="text-center text-danger" ng-if="!vm.connected">is not</h3>
+            <h3 class="text-center text-success" ng-if="vm.connected">is</h3>
+            <h3 class="text-center">Connected to</h3>
+            <h1 class="text-center text-warning">Firebase</h1>
+        </div>
+    </div>
+
+    <div class="card" ng-repeat="item in vm.object">
+        <div class="item item-divider">
+            {{item.Name | uppercase}}
+        </div>
+        <div class="item itex-text-wrap">
+            {{item.Email}}
+        </div>
+        <div class="item item-divider">
+            Conversations: {{ item.chats | length }}
+        </div>
+    </div>
+</ion-content>

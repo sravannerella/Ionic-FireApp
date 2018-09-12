@@ -1,26 +1,57 @@
-// Ionic Starter App
+(function(){
+    'use strict';
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+    angular.module('fireApp', [
+        'ionic',
+        'firebase'
+    ]);
+})();
+(function(){
+    'use strict';
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs).
-    // The reason we default this to hidden is that native apps don't usually show an accessory bar, at
-    // least on iOS. It's a dead giveaway that an app is using a Web View. However, it's sometimes
-    // useful especially with forms, though we would prefer giving the user a little more room
-    // to interact with the app.
-    if (window.cordova && window.Keyboard) {
-      window.Keyboard.hideKeyboardAccessoryBar(true);
+    angular.module('fireApp')
+            .config(config);
+
+    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+    function config($stateProvider, $urlRouterProvider){
+        $stateProvider
+            .state('main', {
+                url: '/',
+                templateUrl: 'main.html',
+                controller: 'mainCtrl',
+                controllerAs: 'vm'
+            });
+        
+        $urlRouterProvider.otherwise('/');
     }
+})();
+(function(){
+    'use strict';
+    angular.module('fireApp')
+        .filter('length', ()=> {
+        return (obj) => {
+            return Object.keys(obj).length;
+        }
+    });
+})();
+(function(){
+    'use strict';
 
-    if (window.StatusBar) {
-      // Set the statusbar to use the default style, tweak this to
-      // remove the status bar on iOS or change it to use white instead of dark colors.
-      StatusBar.styleDefault();
+    angular.module('fireApp')
+        .controller('mainCtrl', mainCtrl);
+
+    mainCtrl.$inject = ['$scope', '$stateParams', '$firebaseArray'];
+    
+    function mainCtrl($scope, $stateParams, $firebaseArray){
+        var vm = this;
+        vm.connected = true;
+        
+        $scope.$on('$ionicView.beforeEnter', () => {
+            const rootRef = firebase.database().ref().child('Users');
+            vm.object = $firebaseArray(rootRef);
+            console.log("BEfore Entered", vm.object);
+        });
     }
-  });
-})
+})();
+//# sourceMappingURL=app.js.map

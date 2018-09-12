@@ -1,0 +1,21 @@
+$light: #DFE1E5;
+$danger: #FF5F57;
+$warning: #FFBD2E;
+$success: #2AC940;
+$dark: #202124;
+$primary: #4385F4;
+
+$colors: (
+    primary: $primary,
+    light : $light, 
+    danger: $danger, 
+    warning: $warning, 
+    success: $success, 
+    dark: $dark
+);
+
+@each $name, $item in $colors {
+    .text-#{$name}{
+        color: $item;
+    }
+}

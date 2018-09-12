@@ -1,0 +1,42 @@
+$sides: (top, bottom, left, right);
+
+@for $i from 0 to 11 {
+    .p-#{$i}{
+        padding: $i + 0rem;
+    }
+    .m-#{$i}{
+        margin: $i + 0rem;
+    }
+    .h-#{$i*10}{
+        height: $i*10 + 0%;
+    }
+    .h-#{$i*10}vh{
+        height: $i*10 + 0vh;
+    }
+    .w-#{$i*10}{
+        width: $i*10 + 0%;
+    }
+    .w-#{$i*10}vh{
+        width: $i*10 + 0vh;
+    }
+    @each $side in $sides{
+        .p#{str-slice($side, 0, 1)}-#{$i}{
+            padding-#{$side}: $i +  0rem !important;
+        }
+        .m#{str-slice($side, 0, 1)}-#{$i}{
+            margin-#{$side}: $i +  0rem !important;
+        }
+    }
+}
+
+@for $i from 10 to 50 {
+    .font-#{$i}{
+        font-size: $i + 0px;
+    }
+}
+
+.has-header{
+    .h-100{
+        height: calc(100vh - 50px);
+    }
+}
