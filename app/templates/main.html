@@ -9,12 +9,17 @@
         </div>
     </div>
 
-    <div class="card" ng-repeat="item in vm.object">
+    <div>
+        <button class="button button-dark" ng-click="vm.addItem()">Add Item</button>
+    </div>
+
+    <div class="card" ng-repeat="item in vm.object" ng-click="vm.updateItem(item)">
         <div class="item item-divider">
             {{item.Name | uppercase}}
         </div>
         <div class="item itex-text-wrap">
             {{item.Email}}
+            <button class="button button-assertive" ng-click="vm.deleteItem(item)">Delete</button>
         </div>
         <div class="item item-divider">
             Conversations: {{ item.chats | length }}

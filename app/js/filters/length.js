@@ -3,7 +3,11 @@
     angular.module('fireApp')
         .filter('length', ()=> {
         return (obj) => {
-            return Object.keys(obj).length;
+            if(obj !== null && obj !== undefined){
+                return Object.keys(obj).length;
+            } else {
+                return 0;
+            }
         }
     });
 })();
